@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Trending Topics | SkillMate</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700;800;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#011638",
+                        "secondary": "#364156",
+                        "accent-light": "#DFF8EB",
+                        "accent-dark": "#122B1D",
+                        "text-muted": "#CDCDCD",
+                        "background-light": "#f5f7f8",
+                        "background-dark": "#0f1723",
+                    },
+                    fontFamily: {
+                        "display": ["Lexend"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.5rem",
+                        "lg": "1rem",
+                        "xl": "1.5rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style type="text/tailwindcss">
+        body {
+            font-family: 'Lexend', sans-serif;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .sidebar-active {
+            background-color: #364156;
+            color: #DFF8EB;
+        }
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 4px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #364156;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-white antialiased">
+<div class="flex h-screen overflow-hidden">
+<aside class="w-64 flex-shrink-0 bg-primary border-r border-secondary/30 hidden md:flex flex-col">
+<div class="p-6 flex items-center gap-3">
+<div class="size-8 text-accent-light">
+<svg fill="none" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+<path clip-rule="evenodd" d="M24 0.757355L47.2426 24L24 47.2426L0.757355 24L24 0.757355ZM21 35.7574V12.2426L9.24264 24L21 35.7574Z" fill="currentColor" fill-rule="evenodd"></path>
+</svg>
+</div>
+<h1 class="text-xl font-bold tracking-tight text-white">SkillMate</h1>
+</div>
+<nav class="flex-1 px-4 space-y-2 mt-4">
+<a class="flex items-center gap-3 px-4 py-3 rounded-xl text-text-muted hover:bg-secondary/20 transition-colors text-sm font-medium" href="dashboard.html">
+<span class="material-symbols-outlined">dashboard</span>
+                Dashboard
+            </a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-xl text-text-muted hover:bg-secondary/20 transition-colors text-sm font-medium" href="chat.html">
+<span class="material-symbols-outlined">chat</span>
+                Chat
+            </a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-xl text-text-muted hover:bg-secondary/20 transition-colors text-sm font-medium" href="community.html">
+<span class="material-symbols-outlined">groups</span>
+                Community
+            </a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-xl text-text-muted hover:bg-secondary/20 transition-colors text-sm font-medium" href="calender.html">
+<span class="material-symbols-outlined">calendar_today</span>
+                Calendar
+            </a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-xl sidebar-active text-sm font-medium" href="trending.html">
+<span class="material-symbols-outlined">trending_up</span>
+                Trending
+            </a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-xl text-text-muted hover:bg-secondary/20 transition-colors text-sm font-medium" href="homepage.html">
+<span class="material-symbols-outlined">handshake</span>
+                Matches
+            </a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-xl text-text-muted hover:bg-secondary/20 transition-colors text-sm font-medium" href="meeting.html">
+<span class="material-symbols-outlined">videocam</span>
+                Meeting
+            </a>
+</nav>
+<div class="p-4 space-y-4">
+<button class="w-full bg-accent-dark border border-accent-light/20 text-accent-light py-3 rounded-xl text-sm font-bold flex items-center justify-center gap-2 hover:bg-accent-dark/80 transition-all">
+<span class="material-symbols-outlined text-[20px]">play_circle</span>
+                Start Lesson
+            </button>
+<div class="pt-4 border-t border-secondary/30">
+<div class="flex items-center gap-3 px-4 py-2 text-text-muted text-sm cursor-pointer hover:text-white transition-colors">
+<span class="material-symbols-outlined">settings</span>
+                    Settings
+                </div>
+<div class="flex items-center gap-3 px-4 py-2 text-red-400 text-sm cursor-pointer hover:text-red-300 transition-colors">
+<span class="material-symbols-outlined">logout</span>
+                    Logout
+                </div>
+</div>
+</div>
+</aside>
+<main class="flex-1 flex flex-col overflow-hidden">
+<header class="h-16 flex items-center justify-between px-8 bg-background-light dark:bg-background-dark border-b border-secondary/20">
+<div class="flex-1 max-w-xl">
+<div class="relative">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-text-muted">search</span>
+<input class="w-full bg-secondary/10 dark:bg-secondary/20 border-none rounded-xl pl-10 pr-4 py-2 focus:ring-2 focus:ring-accent-light/30 text-sm" placeholder="Search trending skills..." type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-6">
+<div class="flex gap-2">
+<button class="p-2 rounded-xl bg-secondary/10 dark:bg-secondary/20 text-text-muted hover:text-white transition-colors">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<button class="p-2 rounded-xl bg-secondary/10 dark:bg-secondary/20 text-text-muted hover:text-white transition-colors">
+<span class="material-symbols-outlined">mail</span>
+</button>
+</div>
+<div class="flex items-center gap-3 pl-4 border-l border-secondary/20">
+<div class="text-right hidden sm:block">
+<p class="text-sm font-semibold text-slate-900 dark:text-white">Rohan Sharma</p>
+<p class="text-xs text-text-muted leading-none">Pro Learner</p>
+</div>
+<div class="size-10 rounded-full bg-center bg-cover border-2 border-accent-light/30" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAqROXZ86Nfcd8H0sb5johQAH-6dXtxNKzkYUfdKx8yPr5GkhGFLPfAGjSqVxerqZhG9bfCc8_EkumBLwceiu15QS5J9u8zPnOJOtpKAt6FYpAI4t8GpMrlfUoArmKW-P7DtJK1jA19aI94pzP2ld7Xwr00l-KG2QARO6WYdFSkJk7JFCW-NMeeum35O0DR3g2hVJuPrH0xtokHOsycaNVwfHSVS2DXMfN_yIbpzKudIeFN9SeS7EC9XsvLFw3Jp3HLartLOff-20M')"></div>
+</div>
+</div>
+</header>
+<div class="flex-1 overflow-y-auto p-8 custom-scrollbar">
+<div class="mb-8 flex flex-col md:flex-row md:items-end justify-between gap-4">
+<div>
+<h2 class="text-3xl font-black tracking-tight text-slate-900 dark:text-white">Trending Topics</h2>
+<p class="text-text-muted mt-1">Explore the fastest growing skills in the professional market today.</p>
+</div>
+<div class="flex gap-2">
+<button class="px-4 py-2 rounded-xl bg-secondary/20 text-sm font-medium border border-secondary/30">Last 7 Days</button>
+<button class="px-4 py-2 rounded-xl bg-accent-dark text-accent-light text-sm font-bold border border-accent-light/20">Global View</button>
+</div>
+</div>
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+<div class="bg-white dark:bg-primary/40 border border-secondary/20 rounded-xl overflow-hidden group">
+<div class="p-6">
+<div class="flex justify-between items-start mb-4">
+<div class="size-12 rounded-xl bg-accent-dark text-accent-light flex items-center justify-center">
+<span class="material-symbols-outlined text-[28px]">smart_toy</span>
+</div>
+<div class="flex items-center gap-1 text-accent-light font-bold">
+<span class="material-symbols-outlined text-[18px]">trending_up</span>
+<span class="text-sm">+42%</span>
+</div>
+</div>
+<h3 class="text-lg font-bold mb-1">AI Engineering</h3>
+<p class="text-xs text-text-muted mb-4 leading-relaxed line-clamp-2">Master LLMs, prompt engineering, and RAG architectures for modern enterprise.</p>
+<div class="flex items-center justify-between mb-6">
+<div class="text-xs">
+<span class="text-text-muted">Popularity Score:</span>
+<span class="font-bold ml-1 text-accent-light">98.4</span>
+</div>
+<div class="flex -space-x-2">
+<div class="size-6 rounded-full border border-background-dark bg-cover" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDRB6N3CadIONlWK78f0xQKy01Ga7FAzqNe12_dJLRY6AwxA8vvlj6U54cTmrU2hrlOV1z2sBpm9MmHVRkqfB7uwyC-ubtVlHvyhcuLpr3ZDdtKHDLcTbpAB3lcsMPOZUqIVtlY5R0g5dpnCUtfUD-cMeuv73L3rHwuYtTI8dZMcCU-RO0OUmBDUlA3AZimjqy_Mi2sv14JV6PEQqklEM_mII_S07clRYP1Ev69boUyajhIRRDDI-4aGDw-SjKDvwHtUUKbq35ouUw')"></div>
+<div class="size-6 rounded-full border border-background-dark bg-cover" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCEPlXnUXrnZNbGnX5oMtc6Ehm912f3Yc8GiNI2ga9zHwMHpjKcW7MwXpnd3wzaysABJ-qhhn3ifQXO2ed2DrVlGJ6_I5my5zKo1d7ryI9ffC3_n0nL-4XNQmoGeJmc30xTVldecDCI7xYyEYgl8qCoj-FIaaTgLwr-NWacm450-dyrgycswCua4AD9nvBRomuV4OGPF9YM-xUxZuapdtNl52sHRpG1bR0VxrVDorJqxbzT_HCnIexy85zgo_5zNQtaUKW1rTYkTRk')"></div>
+<div class="size-6 rounded-full border border-background-dark bg-secondary flex items-center justify-center text-[8px] font-bold">+12k</div>
+</div>
+</div>
+<button class="w-full py-3 bg-secondary/10 hover:bg-accent-dark hover:text-accent-light border border-secondary/20 rounded-xl text-xs font-bold transition-all flex items-center justify-center gap-2">
+                            Join Community
+                            <span class="material-symbols-outlined text-[16px]">chevron_right</span>
+</button>
+</div>
+</div>
+<div class="bg-white dark:bg-primary/40 border border-secondary/20 rounded-xl overflow-hidden group">
+<div class="p-6">
+<div class="flex justify-between items-start mb-4">
+<div class="size-12 rounded-xl bg-secondary/40 text-accent-light flex items-center justify-center">
+<span class="material-symbols-outlined text-[28px]">architecture</span>
+</div>
+<div class="flex items-center gap-1 text-accent-light font-bold">
+<span class="material-symbols-outlined text-[18px]">trending_up</span>
+<span class="text-sm">+28%</span>
+</div>
+</div>
+<h3 class="text-lg font-bold mb-1">Advanced UX</h3>
+<p class="text-xs text-text-muted mb-4 leading-relaxed line-clamp-2">Complex system design, psychological patterns, and accessibility excellence.</p>
+<div class="flex items-center justify-between mb-6">
+<div class="text-xs">
+<span class="text-text-muted">Popularity Score:</span>
+<span class="font-bold ml-1 text-accent-light">92.1</span>
+</div>
+<div class="flex -space-x-2">
+<div class="size-6 rounded-full border border-background-dark bg-cover" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCljASp5uRVpWvPOr_w1VoU3bbHHmo7Zp_ZW_Y5JpOxXXdm4L6UyAJjpLJvVDSVMHh-FI68cDMPYC2FezLSwHkwawtOMVjB-euCRO3EaB5CdEA6kssZ6bKdY8Eh46qJn5DxfABRaFEqIAVWujtpFh3LQSICQBXz4WsKD_dZ-mEWwymLr0jp9N_t3wy8QwBjpNhdJ8lS2UgE0O7a4WUXS8X0Nhp7-ucWOPqq6cLCVcmypTrz4kVMtgV7KHOKS3D35hA_3ib0SMUKwBI')"></div>
+<div class="size-6 rounded-full border border-background-dark bg-secondary flex items-center justify-center text-[8px] font-bold">+8k</div>
+</div>
+</div>
+<button class="w-full py-3 bg-secondary/10 hover:bg-accent-dark hover:text-accent-light border border-secondary/20 rounded-xl text-xs font-bold transition-all flex items-center justify-center gap-2">
+                            Join Community
+                            <span class="material-symbols-outlined text-[16px]">chevron_right</span>
+</button>
+</div>
+</div>
+<div class="bg-white dark:bg-primary/40 border border-secondary/20 rounded-xl overflow-hidden group">
+<div class="p-6">
+<div class="flex justify-between items-start mb-4">
+<div class="size-12 rounded-xl bg-accent-dark text-accent-light flex items-center justify-center">
+<span class="material-symbols-outlined text-[28px]">cloud_sync</span>
+</div>
+<div class="flex items-center gap-1 text-accent-light font-bold">
+<span class="material-symbols-outlined text-[18px]">trending_up</span>
+<span class="text-sm">+35%</span>
+</div>
+</div>
+<h3 class="text-lg font-bold mb-1">K8s Orchestration</h3>
+<p class="text-xs text-text-muted mb-4 leading-relaxed line-clamp-2">Scaling containerized applications and managing complex microservices.</p>
+<div class="flex items-center justify-between mb-6">
+<div class="text-xs">
+<span class="text-text-muted">Popularity Score:</span>
+<span class="font-bold ml-1 text-accent-light">89.5</span>
+</div>
+<div class="flex -space-x-2">
+<div class="size-6 rounded-full border border-background-dark bg-cover" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAqROXZ86Nfcd8H0sb5johQAH-6dXtxNKzkYUfdKx8yPr5GkhGFLPfAGjSqVxerqZhG9bfCc8_EkumBLwceiu15QS5J9u8zPnOJOtpKAt6FYpAI4t8GpMrlfUoArmKW-P7DtJK1jA19aI94pzP2ld7Xwr00l-KG2QARO6WYdFSkJk7JFCW-NMeeum35O0DR3g2hVJuPrH0xtokHOsycaNVwfHSVS2DXMfN_yIbpzKudIeFN9SeS7EC9XsvLFw3Jp3HLartLOff-20M')"></div>
+<div class="size-6 rounded-full border border-background-dark bg-secondary flex items-center justify-center text-[8px] font-bold">+5k</div>
+</div>
+</div>
+<button class="w-full py-3 bg-secondary/10 hover:bg-accent-dark hover:text-accent-light border border-secondary/20 rounded-xl text-xs font-bold transition-all flex items-center justify-center gap-2">
+                            Join Community
+                            <span class="material-symbols-outlined text-[16px]">chevron_right</span>
+</button>
+</div>
+</div>
+<div class="bg-white dark:bg-primary/40 border border-secondary/20 rounded-xl overflow-hidden group">
+<div class="p-6">
+<div class="flex justify-between items-start mb-4">
+<div class="size-12 rounded-xl bg-secondary/40 text-accent-light flex items-center justify-center">
+<span class="material-symbols-outlined text-[28px]">bar_chart</span>
+</div>
+<div class="flex items-center gap-1 text-accent-light font-bold">
+<span class="material-symbols-outlined text-[18px]">trending_up</span>
+<span class="text-sm">+15%</span>
+</div>
+</div>
+<h3 class="text-lg font-bold mb-1">Data Visualization</h3>
+<p class="text-xs text-text-muted mb-4 leading-relaxed line-clamp-2">Transforming complex datasets into actionable visual storytelling narratives.</p>
+<div class="flex items-center justify-between mb-6">
+<div class="text-xs">
+<span class="text-text-muted">Popularity Score:</span>
+<span class="font-bold ml-1 text-accent-light">84.2</span>
+</div>
+<div class="flex -space-x-2">
+<div class="size-6 rounded-full border border-background-dark bg-cover" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBzw6Eo3eBS8JPK0V5LfSbB4Eot8dC3wGBoj17SpKJ6uD9K3cA9Dt5AXq5nmOXnxoNCAdGvCBIo1feLg5oREaGnKrsPoGXL-CXg26jmte4wjjGz92frNqi2R2gQDGKfiTFyTyRJLF5hsGa0gSPwkNIT4ZHhNxV4ZSRo5pKH6ZZYciPVGa4LUlsGeJDwvHq1mQ2j8wtw8F_hbqjYnFHq2TfaY4UovPQLIE2dWbZaEjtjtTvRoriEvEFSVRVDBvEoFh1UYJ_x606h4vU')"></div>
+<div class="size-6 rounded-full border border-background-dark bg-secondary flex items-center justify-center text-[8px] font-bold">+10k</div>
+</div>
+</div>
+<button class="w-full py-3 bg-secondary/10 hover:bg-accent-dark hover:text-accent-light border border-secondary/20 rounded-xl text-xs font-bold transition-all flex items-center justify-center gap-2">
+                            Join Community
+                            <span class="material-symbols-outlined text-[16px]">chevron_right</span>
+</button>
+</div>
+</div>
+<div class="bg-white dark:bg-primary/40 border border-secondary/20 rounded-xl overflow-hidden group">
+<div class="p-6">
+<div class="flex justify-between items-start mb-4">
+<div class="size-12 rounded-xl bg-accent-dark text-accent-light flex items-center justify-center">
+<span class="material-symbols-outlined text-[28px]">enhanced_encryption</span>
+</div>
+<div class="flex items-center gap-1 text-accent-light font-bold">
+<span class="material-symbols-outlined text-[18px]">trending_up</span>
+<span class="text-sm">+55%</span>
+</div>
+</div>
+<h3 class="text-lg font-bold mb-1">Blockchain Security</h3>
+<p class="text-xs text-text-muted mb-4 leading-relaxed line-clamp-2">Smart contract auditing, decentralized identity, and network vulnerability.</p>
+<div class="flex items-center justify-between mb-6">
+<div class="text-xs">
+<span class="text-text-muted">Popularity Score:</span>
+<span class="font-bold ml-1 text-accent-light">78.9</span>
+</div>
+<div class="flex -space-x-2">
+<div class="size-6 rounded-full border border-background-dark bg-secondary flex items-center justify-center text-[8px] font-bold">+2k</div>
+</div>
+</div>
+<button class="w-full py-3 bg-secondary/10 hover:bg-accent-dark hover:text-accent-light border border-secondary/20 rounded-xl text-xs font-bold transition-all flex items-center justify-center gap-2">
+                            Join Community
+                            <span class="material-symbols-outlined text-[16px]">chevron_right</span>
+</button>
+</div>
+</div>
+<div class="bg-white dark:bg-primary/40 border border-secondary/20 rounded-xl overflow-hidden group">
+<div class="p-6">
+<div class="flex justify-between items-start mb-4">
+<div class="size-12 rounded-xl bg-secondary/40 text-accent-light flex items-center justify-center">
+<span class="material-symbols-outlined text-[28px]">query_stats</span>
+</div>
+<div class="flex items-center gap-1 text-accent-light font-bold">
+<span class="material-symbols-outlined text-[18px]">trending_up</span>
+<span class="text-sm">+112%</span>
+</div>
+</div>
+<h3 class="text-lg font-bold mb-1">Quantum Basics</h3>
+<p class="text-xs text-text-muted mb-4 leading-relaxed line-clamp-2">Understanding qubits, entanglement, and future computational paradigms.</p>
+<div class="flex items-center justify-between mb-6">
+<div class="text-xs">
+<span class="text-text-muted">Popularity Score:</span>
+<span class="font-bold ml-1 text-accent-light">65.3</span>
+</div>
+<div class="flex -space-x-2">
+<div class="size-6 rounded-full border border-background-dark bg-secondary flex items-center justify-center text-[8px] font-bold">+1k</div>
+</div>
+</div>
+<button class="w-full py-3 bg-secondary/10 hover:bg-accent-dark hover:text-accent-light border border-secondary/20 rounded-xl text-xs font-bold transition-all flex items-center justify-center gap-2">
+                            Join Community
+                            <span class="material-symbols-outlined text-[16px]">chevron_right</span>
+</button>
+</div>
+</div>
+</div>
+<div class="mt-12 bg-accent-dark/40 border border-accent-light/10 rounded-2xl p-8 flex flex-col md:flex-row items-center gap-8">
+<div class="flex-1">
+<h3 class="text-2xl font-bold text-accent-light mb-2">Can't find a topic?</h3>
+<p class="text-text-muted">Our community is constantly growing. Propose a new trending topic or search our full curriculum of over 50,000 professional skills.</p>
+</div>
+<div class="flex gap-4">
+<button class="px-6 py-3 bg-accent-light text-primary font-bold rounded-xl hover:brightness-110 transition-all">Search All Skills</button>
+<button class="px-6 py-3 border border-accent-light/30 text-accent-light font-bold rounded-xl hover:bg-accent-light/10 transition-all">Request Topic</button>
+</div>
+</div>
+</div>
+</main>
+</div>
+
+</body></html>
+
+
+
+
+
