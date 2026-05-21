@@ -20,7 +20,7 @@ Analyze user skills and learning goals
 Measure similarity between users
 
 Thank You For Reading,
-Bhavya Shah
+Niyam Jain
 
 
 
